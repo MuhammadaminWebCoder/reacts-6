@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+input{
+    background-color: white !important;
+}
+.active{
+    font-weight:bold;
+    color: black;
+}
+body{
+    font-family: Arial, Helvetica, sans-serif;
+}
+select{
+    background-color: white;
+}

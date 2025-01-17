@@ -1,0 +1,89 @@
+import { PATH } from "../hooks/usePath"
+import {Home,Notification,Messages,Bookmarks,List,Explore,Profile,More} from "../pages/Dashboard"
+import {Tweets,TweetsReplice,Media,Likes} from "../pages/Dashboard/ProfilePages"
+import {Login,Register} from "../pages/Login"
+export const dashboardRouteList =[
+    {
+        id:1,
+        path:PATH.Home,
+        element:<Home/>,
+        children:[]
+    },
+    {
+        id:2,
+        path:PATH.Notifications,
+        element:<Notification/>,
+        children:[]
+    },
+    {
+        id:3,
+        path:PATH.Messages,
+        element:<Messages/>,
+        children:[]
+    },
+    {
+        id:4,
+        path:PATH.Bookmarks,
+        element:<Bookmarks/>,
+        children:[]
+    },
+    {
+        id:5,
+        path:PATH.Lists,
+        element:<List/>,
+        children:[]
+    },
+    {
+        id:6,
+        path:PATH.Explore,
+        element:<Explore/>,
+        children:[]
+    },
+    {
+        id:7,
+        path:PATH.Profile,
+        element:<Profile/>,
+        children:[
+            {
+                id:9,
+                path:PATH.ProfileTweets,
+                element:<Tweets/>
+            },
+            {
+                id:10,
+                path:PATH.ProfileTweetsReplice,
+                element:<TweetsReplice/>
+            },
+            {
+                id:11,
+                path:PATH.ProfileMedia,
+                element:<Media/>
+            },
+            {
+                id:12,
+                path:PATH.ProfileLikes,
+                element:<Likes/>
+            }
+        ]
+    },
+    {
+        id:8,
+        path:PATH.More,
+        element:<More/>,
+        children:[]
+    },
+]
+export const LoginRoutes = [
+    {
+        id:1,
+        path:PATH.Login,
+        element:<Login/>,
+        children:[]
+    },
+    {
+        id:2,
+        path:PATH.Register,
+        element:<Register/>,
+        children:[]
+    },
+]
