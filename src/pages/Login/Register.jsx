@@ -6,15 +6,18 @@ import { Context } from "../../context/Context";
 function Register() {
   const [useEmail,setUseEmail] = useState()
   const {formData, setFormData} = useContext(Context);
+  const [showHidePassword,setShowHidePassword] = useState(false)
   const navigate = useNavigate()
 
   const handleSubmit = (e) => {
-      e.preventDefault();
-    const data = {
+    e.preventDefault();
+    const data = { 
+      id: formData.length + 1,
+      image:'https://cdn-icons-png.flaticon.com/512/64/64572.png',
       email: e.target.email.value,
       name: e.target.name.value,
       password: e.target.password.value,
-      phone: e.target.phone.value,
+      phone: e.target.phone.value.split(' ').join(''),
       month: e.target.month.value,
       day: e.target.day.value,
       year: e.target.year.value
@@ -29,7 +32,6 @@ const date =  Array.from({ length: 100 }, (_, i) => new Date().getFullYear() - i
 const dateDay = Array.from({ length: 31 }, (_, i) => i + 1)
 const dateMoth = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
   return (
-
     <div className="min-h-screen flex items-center justify-center p-4">
       <div className="w-full max-w-lg space-y-6">
       <i className="fa-brands text-center text-4xl block text-blue-500 fa-twitter"></i>
@@ -37,8 +39,12 @@ const dateMoth = ['January', 'February', 'March', 'April', 'May', 'June', 'July'
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="space-y-4">
             <Input type={"name"} name={"name"} placeholder={"Name"} />
-            <Input type={"tel"} name={"phone"} placeholder={"Phone Number"} />
-            <Input type={"password"} name={"password"} placeholder={"Password"} />
+            <Input defaultValue={'+998'} type={"tel"} name={"phone"} placeholder={"Phone Number"} />
+            <div className="relative">
+              <Input type={showHidePassword == true?"text":"password"} name={"password"} placeholder={"Password"} />
+              {showHidePassword == true?<i onClick={() => setShowHidePassword(!showHidePassword)} className="fa-regular absolute right-4 top-[18px] fa-eye-slash"></i>
+              :<i onClick={() => setShowHidePassword(!showHidePassword)} className="fa-regular absolute right-4 top-[18px] fa-eye"></i>}
+            </div>
             {useEmail && <Input type={"email"} name={"email"} placeholder={"Email"} />}
             <div className="flex justify-between">
             <p onClick={() => setUseEmail(!useEmail)} className="text-[#1DA1F2] text-sm cursor-pointer hover:underline">{useEmail?'hide email':'Use email'}</p>

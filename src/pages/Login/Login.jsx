@@ -1,27 +1,33 @@
 import Input from "../../components/Input";
 import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Context } from "../../context/Context";
 import toast, { Toaster } from "react-hot-toast";
 
 function Login() {
-  const {formData,setToken} = useContext(Context)
-  
-  console.log(formData);
-  
+  const {formData,setToken,setUser} = useContext(Context)
+  const [showHidePassword,setShowHidePassword] = useState(false)
+  const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    const eValue = e.target.emailName.value;
+    const eValue = e.target.emailName.value.split(' ').join('');
     const pValue = e.target.password.value;
-    formData.map(s => {
-      if (eValue == s.email && pValue == s.password) {
-        console.log(s.email,s.password);
-        toast.success(`HI evrione ${s.name}`)
+    const user = formData.find(s =>  (eValue === s.email || eValue === s.phone) && pValue === s.password);
+    if (user) {
+      setUser(user)
+      toast.success(`Hi everyone ${user.name}`);
+      setTimeout(() => {
+        navigate('/');
         e.target.reset();
-        setToken(formData)
-      }
-    })
+        setToken(formData);
+      }, 1000);
+    }
+    else{
+      toast.error(`error input errors`);
+    }
   };
+  
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4">
@@ -34,8 +40,12 @@ function Login() {
           />
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="space-y-4">
-            <Input type={"email"} name={"emailName"} placeholder={"Phone number, email address"} />
-            <Input type={"password"} name={"password"} placeholder={"Password"} />
+            <Input type={"text"} name={"emailName"} placeholder={"Phone number, email address"} />
+            <div className="relative">
+              <Input type={showHidePassword == true?"text":"password"} name={"password"} placeholder={"Password"} />
+              {showHidePassword == true?<i onClick={() => setShowHidePassword(!showHidePassword)} className="fa-regular absolute right-4 top-[18px] fa-eye-slash"></i>
+              :<i onClick={() => setShowHidePassword(!showHidePassword)} className="fa-regular absolute right-4 top-[18px] fa-eye"></i>}
+            </div>
           </div>
           <button
             type="submit"

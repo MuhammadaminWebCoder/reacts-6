@@ -1,28 +1,34 @@
 import './App.css'
-import { useContext } from 'react'
+import { lazy, Suspense, useContext } from 'react'
 import { Context } from './context/Context'
 import DashboardRouter from './routes/Dashboard'
-import LoginRoute from './routes/Login'
 import SideBar from './modules/SideBar'
+import SideContent from './modules/SideContent'
+
+const LoginRoute = lazy(() => new Promise((resolve) => {
+  return setTimeout(() => resolve(import('./routes/Login')),1000)
+}))
+import LazyFallBack from './components/LazyFallBack'
 
 function App() {
   const {token} = useContext(Context)
     if (token) {
       return(
-        <div className="flex w-[1200px] mx-auto">
+        <div className="flex w-[1300px] mx-auto">
           <SideBar/>
           <div className="main border flex-1">
             <DashboardRouter/>
           </div>
-          <div className='w-[350px]'>
-            wd
+          <div className='w-[400px]'>
+            <SideContent/>
           </div>
-          {/* <SideContent/> */}
         </div>
       )
     }
     else{
-      return <LoginRoute/>
+      return (<Suspense fallback={<LazyFallBack/>}>
+       <LoginRoute/>
+      </Suspense>)
     }
 }
 

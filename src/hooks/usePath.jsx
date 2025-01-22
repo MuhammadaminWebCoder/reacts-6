@@ -1,5 +1,5 @@
 export const PATH = {
-    Home:"/Home",
+    Home:"/",
     Explore:"/explore",
     Notifications:"/notifications",
     Messages:"/messages",
