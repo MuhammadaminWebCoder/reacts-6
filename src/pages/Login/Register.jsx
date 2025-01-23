@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Input from "../../components/Input";
 import { useContext, useState } from "react";
 import { Context } from "../../context/Context";
+import toast, { Toaster } from "react-hot-toast";
 
 function Register() {
   const [useEmail,setUseEmail] = useState()
@@ -14,6 +15,7 @@ function Register() {
     const data = { 
       id: formData.length + 1,
       image:'https://cdn-icons-png.flaticon.com/512/64/64572.png',
+      bgImage:"https://privacyinternational.org/sites/default/files/styles/large/public/2020-07/twitter.jpg?itok=2V1iRPWI",
       email: e.target.email.value,
       name: e.target.name.value,
       password: e.target.password.value,
@@ -22,11 +24,17 @@ function Register() {
       day: e.target.day.value,
       year: e.target.year.value
     }
-    const updatedFormData = [...formData, data];
-    setFormData(updatedFormData);
-    localStorage.setItem('login',JSON.stringify(updatedFormData))
-    e.target.reset()
-    navigate(-1)
+    if (data.email && data.password && data.name && data.phone) {
+      const updatedFormData = [...formData, data];
+      setFormData(updatedFormData);
+      localStorage.setItem('login',JSON.stringify(updatedFormData))
+      e.target.reset()
+      navigate(-1)
+      toast.success(`Hi everyone ${data.name} data success`);
+    }
+    else{
+      toast.error(`error input errors`);
+    }
   };
 const date =  Array.from({ length: 100 }, (_, i) => new Date().getFullYear() - i)
 const dateDay = Array.from({ length: 31 }, (_, i) => i + 1)
@@ -36,6 +44,7 @@ const dateMoth = ['January', 'February', 'March', 'April', 'May', 'June', 'July'
       <div className="w-full max-w-lg space-y-6">
       <i className="fa-brands text-center text-4xl block text-blue-500 fa-twitter"></i>
         <h1 className="text-3xl font-bold mb-8">Create an account</h1>
+        <Toaster position="top-center" reverseOrder={true} />
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="space-y-4">
             <Input type={"name"} name={"name"} placeholder={"Name"} />

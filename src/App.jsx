@@ -14,12 +14,12 @@ function App() {
   const {token} = useContext(Context)
     if (token) {
       return(
-        <div className="flex w-[1300px] mx-auto">
+        <div className="flex w-[1370px] mx-auto">
           <SideBar/>
           <div className="main border flex-1">
             <DashboardRouter/>
           </div>
-          <div className='w-[400px]'>
+          <div className='w-[370px]'>
             <SideContent/>
           </div>
         </div>

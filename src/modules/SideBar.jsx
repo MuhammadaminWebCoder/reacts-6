@@ -3,14 +3,12 @@ import { PATH } from '../hooks/usePath';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { Context } from '../context/Context';
 import Modal from '../components/Modal';
-import Input from '../components/Input';
 
 function Sidebar() {
   const [icon, setIcon] = useState(0);
-  const [openModal, setOpenModal] = useState(false);
-  const {urlImg, setUrlImg} = useContext(Context);
-  const [modalType, setModalType] = useState(null);
-  const { user, setToken, formData, setFormData } = useContext(Context);
+  const {setOpenModal,openModal} = useContext(Context);
+  const [setModalType] = useState(null);
+  const { user, setToken, } = useContext(Context);
   const [downopen, setDownopen] = useState(false);
   const navigate = useNavigate();
   const UserDef = user.image
@@ -39,13 +37,8 @@ function Sidebar() {
     setIcon(ind);
   };
 
-  const handleEdit = () => {
-    setModalType('edit');
-    setOpenModal(true);
-  };
 
   const handleDelete = () => {
-    setModalType('delete');
     setOpenModal(true);
   };
 
@@ -58,27 +51,9 @@ function Sidebar() {
     setOpenModal(false);
   };
 
-  const fileChooce = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const url = URL.createObjectURL(file);
-      setUrlImg(url);
-    }
-  };
 
-  const handleProfileChange = (e) => {
-    e.preventDefault();
-    const newName = e.target.nameEdit.value;
-    const updatedFormData = formData.map((userData) =>
-      userData.id === user.id ? { ...userData, image: urlImg, name: newName } : userData
-    );
-    setFormData(updatedFormData);
-    setOpenModal(false);
-    // localStorage.setItem('user',JSON.stringify(updatedFormData))
-  };
-  // image va name change boldi consoleda localStorage dayam bolshi kere
   return (
-    <div className="w-[300px] pt-4">
+    <div className="w-[260px] pt-4">
       <Link to="/" className="fa-brands text-blue-500 ms-5 text-4xl fa-twitter"></Link>
       <ul className="pb-5 pt-7 flex flex-col">
         {Object.entries(PATH).slice(0, 8).map(([key, value], index) => (
@@ -108,12 +83,6 @@ function Sidebar() {
           }`}
         >
           <p
-            onClick={handleEdit}
-            className="w-full text-white bg-yellow-400 h-[40px] flex items-center justify-center ps-3 cursor-pointer"
-          >
-            Edit <i className="fa-regular ms-4 fa-pen-to-square"></i>
-          </p>
-          <p
             onClick={handleDelete}
             className="w-full bg-red-500 text-white h-[40px] flex items-center justify-center ps-3 cursor-pointer"
           >
@@ -128,43 +97,7 @@ function Sidebar() {
         <i className="absolute right-6 translate-x-2/4 text-2xl fa-regular fa-ellipsis"></i>
       </div>
 
-      {openModal && (
         <Modal openModal={openModal} setOpenModal={setOpenModal}>
-          {modalType === 'edit' ? (
-            <form
-              onSubmit={handleProfileChange}
-              className="text-center space-x-2 space-y-2 py-5"
-            >
-              <p className="text-xl -mb-5 mt-3 font-semibold">Edit</p>
-              <label>
-                <input
-                  type="file"
-                  name="file"
-                  onChange={fileChooce}
-                  className="hidden"
-                />
-                <img
-                  src={urlImg || UserDef}
-                  width={120}
-                  height={120}
-                  className="object-contain !mx-auto !my-4"
-                  alt="chooce image"
-                />
-              </label>
-              <Input
-                name="nameEdit"
-                type="text"
-                extraClass="!w-[50%] block !py-2 !mx-auto border"
-                placeholder="Edit your name ..."
-              />
-              <button type="submit" className="bg-yellow-400 text-white py-2 px-4 rounded">
-                Save
-              </button>
-              <button onClick={Cancel} className="bg-slate-400 text-white py-2 px-4 rounded">
-                Cancel
-              </button>
-            </form>
-          ) : (
             <div className="text-center space-x-4 space-y-2 py-5">
               <p className="-mb-1 text-xl font-semibold">Delete</p>
               <p>Are you sure you want to log out?</p>
@@ -174,10 +107,7 @@ function Sidebar() {
               <button onClick={handleLogout} className="bg-red-500 text-white py-2 px-4 rounded">
                 Confirm Logout
               </button>
-            </div>
-          )}
-        </Modal>
-      )}
+            </div></Modal>
     </div>
   );
 }

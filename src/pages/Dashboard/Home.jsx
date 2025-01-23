@@ -3,8 +3,7 @@ import React, { useContext, useState } from 'react';
 import { Context } from '../../context/Context';
 
 function Home() {
-  const [state, setState] = useState(JSON.parse(localStorage.getItem('addChat')) || []);
-  const { user } = useContext(Context);
+  const { user,setState,state } = useContext(Context);
   const UserDef = user.image
 
   const handleSubmitAdd = (e) => {

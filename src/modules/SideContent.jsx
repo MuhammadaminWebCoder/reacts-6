@@ -1,18 +1,23 @@
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import Input from '../components/Input'
 import React, { useContext } from 'react'
 import { Context } from '../context/Context';
 
 const SideContent = () => {
-const { user } = useContext(Context);
+const { user,state } = useContext(Context);
 const UserDef = user.image
-
+const location = useLocation();
   return (
     <div className='p-4 space-y-4'>
-      <div className='relative'>
+      {location.pathname == '/' && (<div className='relative'>
         <Input type={'text'} placeholder={'Search Twitter'} extraClass={'!bg-slate-100 ps-12 text-lg !rounded-full'}/>
         <i className='fa-regular absolute top-3 left-4 text-lg text-slate-400 fa-search'></i>
-      </div>
+      </div>)}
+      {location.pathname.includes('/profile/') && <div className='flex-wrap grid grid-cols-3'> 
+        {state.map(item => (
+        item.file && <img className="w-full h-[40px] object-cover mt-3 rounded-xl" src={item.file} alt="post img" />
+        ))}
+      </div>}
         <div className="p-4 rounded-xl bg-slate-100">
             <div className="flex items-center justify-between">
                 <p className='font-bold text-xl'>Trends for you</p>
@@ -58,7 +63,7 @@ const UserDef = user.image
             </div>
             <Link className='text-blue-500 text-lg' to={'/'}>Show more</Link>
         </div>
-            <p className='leading-2 text-lg text-slate-400 py-2'>Terms of Service Privacy Policy Cookie Policy Imprint Ads Info More ··· © 2021 Twitter, Inc.</p>
+            {location.pathname == '/' && (<p className='leading-2 text-lg text-slate-400 py-2'>Terms of Service Privacy Policy Cookie Policy Imprint Ads Info More ··· © 2021 Twitter, Inc.</p>)}
     </div>
   )
 }
