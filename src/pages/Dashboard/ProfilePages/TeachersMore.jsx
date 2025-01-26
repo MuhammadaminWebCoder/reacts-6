@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import emptyImg from '../../../assets/image/empotyimg.png';
+import emptyImg from '../ProfilePages/img/empotyImg.png';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Context } from '../../../context/Context';
 import Modal from '../../../components/Modal';

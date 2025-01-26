@@ -18,7 +18,7 @@ function Sidebar() {
   ];
 
   return (
-    <div className="w-[270px] h-[100vh] bg-[#152259] text-white">
+    <div className="w-[300px] h-[100vh] bg-[#152259] text-white">
       <img className="mx-auto mt-5 mb-3 w-[80px]" src={imageTop} alt="top Img" />
       <p className="text-center text-lg mb-8 mt-5">Udemy Inter. school</p>
       <hr className="border-[#BDBDBD]" />
@@ -41,8 +41,7 @@ function Sidebar() {
                 NEW
               </span>
             )}
-            {/* Display chevron icon for the active link */}
-            {location.pathname === value && (
+            {icon === index && (
               <i className="fa-solid fa-chevron-right right-5 text-sm absolute"></i>
             )}
           </NavLink>
