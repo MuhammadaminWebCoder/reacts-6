@@ -1,11 +1,11 @@
 import React from 'react'
 
-function Bookmarks() {
+function Students() {
   return (
     <div>
-      bookmarkss
+      st
     </div>
   )
 }
 
-export default Bookmarks
+export default Students

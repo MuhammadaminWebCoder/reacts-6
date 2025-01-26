@@ -1,11 +1,11 @@
 import React from 'react'
 
-function Likes() {
+function Exams() {
   return (
     <div>
-      likes
+      ex
     </div>
   )
 }
 
-export default Likes
+export default Exams

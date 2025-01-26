@@ -1,5 +1,4 @@
-import Tweets from './Tweets'
-import TweetsReplice from './TweetsReplice'
-import Media from './Media'
-import Likes from './Likes'
-export {Tweets,TweetsReplice,Media,Likes}
+import TeachersAddForm from './TeachersAddForm'
+import TeachersListForm from './TeachersListForm'
+import TeachersMore from './TeachersMore'
+export {TeachersAddForm,TeachersMore,TeachersListForm}

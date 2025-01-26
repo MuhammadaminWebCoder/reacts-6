@@ -1,11 +1,11 @@
 import React from 'react'
 
-function Messages() {
+function Features() {
   return (
     <div>
-      Messages
+      fx
     </div>
   )
 }
 
-export default Messages
+export default Features

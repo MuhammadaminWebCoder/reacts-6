@@ -1,11 +1,11 @@
 import React from 'react'
 
-function More() {
+function Billing() {
   return (
     <div>
-      more
+      bl
     </div>
   )
 }
 
-export default More
+export default Billing

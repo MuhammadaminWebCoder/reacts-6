@@ -1,10 +1,9 @@
-import Home from './Home'
-import Explore from './Explore'
-import Notification from './Notification'
-import Messages from './Messages'
-import Bookmarks from './Bookmarks'
-import List from './List'
-import Profile from './Profile'
-import More from './More'
+import Dashboard from './Dashboard'
+import Teachers from './Teachers'
+import Students from './Students'
+import Billing from './Billing'
+import Settings from './Settings'
+import Exams from './Exams'
+import Features from './Features'
 
-export {Home,Explore,Notification,Messages,Bookmarks,List,Profile,More}
+export {Dashboard,Teachers,Students,Billing,Settings,Exams,Features}

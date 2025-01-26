@@ -1,75 +1,64 @@
 import { PATH } from "../hooks/usePath"
-import {Home,Notification,Messages,Bookmarks,List,Explore,Profile,More} from "../pages/Dashboard"
-import {Tweets,TweetsReplice,Media,Likes} from "../pages/Dashboard/ProfilePages"
+import {Dashboard,Teachers,Students,Billing,Settings,Exams,Features} from "../pages/Dashboard"
+import { TeachersAddForm, TeachersListForm, TeachersMore } from "../pages/Dashboard/ProfilePages"
 import {Login,Register} from "../pages/Login"
 export const dashboardRouteList =[
     {
         id:1,
-        path:PATH.Home,
-        element:<Home/>,
+        path:PATH.Dashboard,
+        element:<Dashboard/>,
         children:[]
     },
     {
         id:2,
-        path:PATH.Notifications,
-        element:<Notification/>,
-        children:[]
-    },
-    {
-        id:3,
-        path:PATH.Messages,
-        element:<Messages/>,
-        children:[]
-    },
-    {
-        id:4,
-        path:PATH.Bookmarks,
-        element:<Bookmarks/>,
-        children:[]
-    },
-    {
-        id:5,
-        path:PATH.Lists,
-        element:<List/>,
-        children:[]
-    },
-    {
-        id:6,
-        path:PATH.Explore,
-        element:<Explore/>,
-        children:[]
-    },
-    {
-        id:7,
-        path:PATH.Profile,
-        element:<Profile/>,
+        path:PATH.Teachers,
+        element:<Teachers/>,
         children:[
             {
+                id:8,
+                path:PATH.TeachersListForm,
+                element:<TeachersListForm/>
+            },
+            {
                 id:9,
-                path:PATH.ProfileTweets,
-                element:<Tweets/>
+                path:PATH.TeachersAddForm,
+                element:<TeachersAddForm/>
             },
             {
                 id:10,
-                path:PATH.ProfileTweetsReplice,
-                element:<TweetsReplice/>
-            },
-            {
-                id:11,
-                path:PATH.ProfileMedia,
-                element:<Media/>
-            },
-            {
-                id:12,
-                path:PATH.ProfileLikes,
-                element:<Likes/>
+                path:PATH.TeachersMore,
+                element:<TeachersMore/>
             }
         ]
     },
     {
-        id:8,
-        path:PATH.More,
-        element:<More/>,
+        id:3,
+        path:PATH.Students,
+        element:<Students/>,
+        children:[]
+    },
+    {
+        id:4,
+        path:PATH.Billing,
+        element:<Billing/>,
+        children:[]
+    },
+    {
+        id:5,
+        path:PATH.Settings,
+        element:<Settings/>,
+        children:[]
+    },
+    {
+        id:6,
+        path:PATH.Exams,
+        element:<Exams/>,
+        children:[]
+    },
+    {
+        id:7,
+        path:PATH.Features,
+        element:<Features/>,
         children:[]
     },
 ]
